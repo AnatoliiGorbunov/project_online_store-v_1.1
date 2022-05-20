@@ -14,5 +14,4 @@ VALUES ('bread', 40),
        ('juice', 100),
        ('apple',82 ),
        ('mango', 170),
-       ('cherry', 170),
        ('beer', 60);
