@@ -5,9 +5,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.project_online_store.v_11.data.Product;
+import ru.geekbrains.project_online_store.v_11.dto.AddProductDto;
+import ru.geekbrains.project_online_store.v_11.dto.ProductDto;
 import ru.geekbrains.project_online_store.v_11.repositories.ProductRepository;
 import ru.geekbrains.project_online_store.v_11.specification.ProductSpecification;
 
+import javax.persistence.EntityExistsException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +24,12 @@ public class ProductService {
     }
 
 
-    public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
+//    public Optional<Product> findById(Long id) {
+//        return productRepository.findById(id);
+//    }
+
+    public ProductDto findById(Long id) {
+        return productRepository.findById(id).map(product -> new ProductDto(product)).orElseThrow();
     }
 
     public List<Product> getAllProduct() {
@@ -46,7 +53,6 @@ public class ProductService {
         //select p from Product p where true and cost > ?
         if (maxCost != null) {
             spec = spec.and(ProductSpecification.lessThanOrEqualTo(maxCost));
-
         }
         //select p from Product p where true and cost > ? AND cost < ?
         if (partTitle != null) {
@@ -57,17 +63,10 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(p - 1, 5));
     }
 
+    public Product addProduct(AddProductDto product) {
+        return productRepository.save(new Product(product.getTitle(), product.getCost(), product.getExample()));
+    }
 }
-
-//    public void addProduct(Product product) {
-//        if (productRepository.existsProductByName(product.getTitle())) {
-//            throw new EntityExistsException("This product is already");
-//        } else {
-//            productRepository.save(product);
-//        }
-//    }
-
-
 
 
 

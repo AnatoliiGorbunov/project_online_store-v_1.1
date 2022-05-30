@@ -2,7 +2,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
     const contextPath = 'http://localhost:8189/app';
 
     $scope.loadProduct = function () {
-        $http.get(contextPath + '/allProducts')
+        $http.get(contextPath + '/api/v1/products/all')
             .then(function (response) {
                 $scope.productList = response.data;
             });

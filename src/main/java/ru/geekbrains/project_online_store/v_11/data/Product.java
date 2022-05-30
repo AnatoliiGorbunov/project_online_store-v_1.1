@@ -1,12 +1,16 @@
 package ru.geekbrains.project_online_store.v_11.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -20,18 +24,17 @@ public class Product {
     @Column(name = "cost")
     private Integer cost;
 
-
-    public Product() {
-    }
+    @Column(name = "example")
+    private Integer example;
 
     public Product(String title, int cost) {
         this.title = title;
         this.cost = cost;
     }
 
-    public Product(Long id, String title, int cost) {
-        this.id = id;
+    public Product(String title, Integer cost, Integer example) {
         this.title = title;
         this.cost = cost;
+        this.example = example;
     }
 }

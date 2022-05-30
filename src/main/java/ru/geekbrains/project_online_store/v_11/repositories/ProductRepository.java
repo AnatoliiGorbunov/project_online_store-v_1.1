@@ -12,4 +12,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
         @Query("select p from Product p where p.cost between :min and :max")
         List<Product>findAllByCostBetween(Integer min, Integer max);
 
+        boolean existsProductByTitle(String name);
 }
