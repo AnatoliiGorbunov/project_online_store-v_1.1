@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="index.js"></script>
+    <title>Клиенты</title>
+</head>
+<body>
+<div class="container" ng-controller="indexController">
+    <h3>Список клиентов</h3>
+    <table class="table table-hover" cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>Наименование продукта</td>
+            <td>Цена</td>
+            <td>Удаление продукта</td>
+        </tr>
+
+        <tr ng-repeat="s in productList">
+            <td>{{s.id}}</td>
+            <td>{{s.title}}</td>
+            <td>{{s.cost}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteById(s.id)">Delete product</button>
+            </td>
+        </tbody>
+    </table>
+    <h3>Фильтр продуктов по цене</h3>
+    <form novalidate ng-submit="filterBetweenCost()">
+        <input class="form-control" type="number" placeholder="min" ng-model="filterBetweenCost.ninCost">
+        <p></p>
+        <input class="form-control" type="number" placeholder="max" ng-model="filterBetweenCost.maxCost">
+        <p></p>
+        <button type="submit" class="btn btn-primary">Ok</button>
+    </form>
+
+</div>
+</body>
+</html>

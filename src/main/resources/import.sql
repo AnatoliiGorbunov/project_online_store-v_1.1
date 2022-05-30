@@ -1,13 +1,18 @@
-DROP TABLE customer IF EXISTS;
-DROP TABLE products IF EXISTS;
-DROP TABLE cart IF EXISTS;
+create table if not exists product (id bigserial, title varchar(255), cost int, primary key(id));
 
-
-
-create table customer (id bigserial, name varchar(255), primary key(id));
-create table products (id bigserial, title varchar(255), cost bigint, primary key(id));
-create table cart (product_id bigint, customer_id bigint, foreign key(product_id) references products(id),foreign key (customer_id) references customer(id));
-
-
-INSERT INTO customer (name) VALUES ('Bob'), ('Jack'), ('John');
-INSERT INTO products (title, cost) VALUES ('bread', 40), ('Milk', 60), ('Tea', 80);
+INSERT INTO product (title, cost)
+VALUES ('bread', 40),
+       ('Milk', 60),
+       ('Tea', 53),
+       ('coffee', 140),
+       ('carrot', 400),
+       ('potato', 44),
+       ('orange', 90),
+       ('banana', 87),
+       ('kiwi', 137),
+       ('chocolate', 73),
+       ('juice', 100),
+       ('apple',82 ),
+       ('mango', 170),
+       ('cherry', 170),
+       ('beer', 60);
