@@ -18,4 +18,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<AppError> catchExistEntityException(ExistEntityException e){
         return new ResponseEntity<>(new AppError(HttpStatus.CONFLICT.value(), e.getMessage()), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<AppError> catchExistEntityException(ValidateException e){
+        return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
 }
